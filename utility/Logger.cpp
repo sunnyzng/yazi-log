@@ -2,9 +2,7 @@
 #include <time.h>
 #include <stdarg.h>
 #include <string.h>
-#include <stdio.h>
 #include <errno.h>
-#include <iostream>
 #include <stdexcept>
 using namespace yazi::utility;
 
@@ -128,7 +126,7 @@ void Logger::rotate()
     string filename = m_filename + timestamp;
     if (rename(m_filename.c_str(), filename.c_str()) != 0)
     {
-        std::cout << "rename failure: " << strerror(errno) << std::endl;
+        throw std::logic_error("rename log file failed: " + string(strerror(errno)));
     }
     open(m_filename);
 }
