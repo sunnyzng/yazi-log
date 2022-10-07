@@ -85,16 +85,18 @@ void Logger::log(Level level, const char* file, int line, const char* format, ..
     va_list arg_ptr;
     va_start(arg_ptr, format);
     len = vsnprintf(nullptr, 0, format, arg_ptr);
+    va_end(arg_ptr);
     if (len > 0)
     {
         char * content = new char[len + 1];
+        va_start(arg_ptr, format);
         vsnprintf(content, len + 1, format, arg_ptr);
+        va_end(arg_ptr);
         content[len] = 0;
         m_fout << content;
         delete content;
         m_len += len;
     }
-    va_end(arg_ptr);
 
     m_fout << "\n";
     m_fout.flush();
