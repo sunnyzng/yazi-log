@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <errno.h>
 #include <iostream>
+#include <stdexcept>
 using namespace yazi::utility;
 
 const char* Logger::s_level[LEVEL_COUNT] = 
