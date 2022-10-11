@@ -99,7 +99,7 @@ void Logger::log(Level level, const char* file, int line, const char* format, ..
     m_fout << "\n";
     m_fout.flush();
 
-    if (m_len >= m_max)
+    if (m_max > 0 && m_len >= m_max)
     {
         rotate();
     }
