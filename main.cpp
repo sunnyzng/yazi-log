@@ -11,7 +11,7 @@ int main()
     // 初始化日志对象
     Logger::instance()->open("./main.log");
 
-    debug("log");
+    debug("name=%s age=%d", "jack", 18);
 
     return 0;
 }
