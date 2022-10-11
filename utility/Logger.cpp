@@ -23,6 +23,7 @@ Logger::Logger() : m_max(0), m_len(0), m_level(DEBUG)
 
 Logger::~Logger()
 {
+    close();
 }
 
 Logger* Logger::instance()
@@ -69,7 +70,7 @@ void Logger::log(Level level, const char* file, int line, const char* format, ..
 
     int len = 0;
     const char * fmt = "%s %s %s:%d ";
-    len = snprintf(nullptr, 0, fmt, timestamp, s_level[level], file, line);
+    len = snprintf(NULL, 0, fmt, timestamp, s_level[level], file, line);
     if (len > 0)
     {
         char * buffer = new char[len + 1];
@@ -82,7 +83,7 @@ void Logger::log(Level level, const char* file, int line, const char* format, ..
 
     va_list arg_ptr;
     va_start(arg_ptr, format);
-    len = vsnprintf(nullptr, 0, format, arg_ptr);
+    len = vsnprintf(NULL, 0, format, arg_ptr);
     va_end(arg_ptr);
     if (len > 0)
     {
